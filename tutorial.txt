@@ -1,0 +1,35 @@
+##tutorial for geant4 performance## Z.Gong
+
+##Download from official website
+
+tar -xvf ./geant4.9.6.p04.tar.gz
+
+mkdir geant4.9.6.p04_build
+
+cd geant4.9.6.p04_build/
+
+##below is configuration##
+cmake -DCMAKE_INSTALL_PREFIX=~/geant4/ -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_INSTALL_EXAMPLES=ON -DBUILD_SHARED_LIBS=ON -DBUILD_STATIC_LIBS=ON  ~/geant4/geant4.9.6.p04 
+
+##below is compilation##
+make -j4 VERBOSE=1
+
+##below is installation##
+make install 
+
+
+##run an example##
+
+cp -r ./B3/ ../../
+mkdir B3-build
+cd B3-build/
+source ../bin/geant4.sh 
+cmake -DGeant4_DIR=~/geant4/share/Geant4-9.6.4/ ~/geant4/B3
+make -j2
+./exampleB3 
+
+##below is in Idle##
+/run/beamOn 100
+exit
+
+
